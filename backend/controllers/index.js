@@ -11,6 +11,15 @@ let projectIdCounter = 1;
 // Task Queue for Script Creation/Update
 const scriptQueue = new Bull("scriptQueue", {
     redis: { host: "localhost", port: 6379 },
+  })
+// Log success when the connection is ready
+scriptQueue.isReady().finally(() => {
+    console.log("Successfully connected to the Redis server for scriptQueue.");
+  })
+  
+  // Log errors if there are connection issues
+  scriptQueue.on("error", (err) => {
+    console.error("Error connecting to the Redis server for scriptQueue:", err);
   });
   
 // Directory to store scripts on disk
