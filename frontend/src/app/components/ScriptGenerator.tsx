@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { useProject } from "../hooks/useProjects";
 import { useRouter } from "next/navigation";
+import { useSession, signOut } from "next-auth/react";
+import Header from "./Header";
 
 const ScriptGenerator = ({ id = null }) => {
   const [projectName, setProjectName] = useState("");
@@ -10,6 +12,8 @@ const ScriptGenerator = ({ id = null }) => {
   const [script, setScript] = useState("");
   const router = useRouter();
   const [error, setError] = useState("");
+  const { data: session } = useSession();
+
 
   const validateUrl = (input) => {
     try {
@@ -63,7 +67,7 @@ const ScriptGenerator = ({ id = null }) => {
 
   return (
     <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
-      <h2 className="text-2xl font-bold mb-4">Marketing Script Generator</h2>
+     <Header session={session} signOut={signOut}/>
       <div className="max-w-lg ">
         <div className="mb-4">
           <label
