@@ -5,7 +5,7 @@ interface Project {
   id: number;
   name: string;
   url: string;
-  script?: string;
+  script: string;
 }
 
 export const useProjects = (): UseQueryResult<Project[], unknown> => {

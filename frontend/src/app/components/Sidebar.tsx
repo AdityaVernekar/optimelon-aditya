@@ -31,7 +31,7 @@ export default function Sidebar({}) {
         >
           Create New Project
         </li>
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <li
             key={index}
             onClick={() => {

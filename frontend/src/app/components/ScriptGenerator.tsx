@@ -6,7 +6,11 @@ import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
 import Header from "./Header";
 
-const ScriptGenerator = ({ id = null }) => {
+type ScriptGeneratorProps = {
+  id?: string; // Optional prop
+};
+
+const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ id = null })=> {
   const [projectName, setProjectName] = useState("");
   const [url, setUrl] = useState("");
   const [script, setScript] = useState("");
@@ -15,7 +19,7 @@ const ScriptGenerator = ({ id = null }) => {
   const { data: session } = useSession();
 
 
-  const validateUrl = (input) => {
+  const validateUrl = (input:string) => {
     try {
       new URL(input);
       return true;
@@ -54,7 +58,6 @@ const ScriptGenerator = ({ id = null }) => {
 
   if (id) {
     const { data } = useProject(id);
-    console.log(data, "get");
 
     useEffect(() => {
       if (data) {
