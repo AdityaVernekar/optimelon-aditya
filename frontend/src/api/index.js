@@ -1,5 +1,5 @@
 // const API = 'http://localhost:8000'
-const API = `http://16.16.215.95:8000`
+const API = `https:/duomoney.in`
 
 
 
